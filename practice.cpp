@@ -1,25 +1,29 @@
 #include<iostream>
+#include<algorithm>
 
 int main(){
 
-	int* ptr {new int {10}};
+	int number{0};
+	std::cout<<"Enter number of names that you want to enter: ";
+	std::cin>>number;
 
-	if (ptr){
-		std::cout<<"Memory created sucessfully"<<std::endl;
+	std::string* arr{new (std::nothrow) std::string[number]{}};
+	if(arr){
+		std::cout<<"Memory dynamically allocated sucessfully!\n";
 	}
 
-	std::cout<<"The new number is "<< *ptr<<std::endl;
-
-
-	delete ptr;
-	ptr = nullptr;
-
-	if (ptr){
-		std::cout<<"ptr is not null"<<std::endl;
+	for (int i{0}; i<number; i++){
+		std::cout<<"Enter name"<<i<<": ";
+		std::cin>>arr[i];
 	}
-	else if (!ptr){
-		std::cout<<"ptr is null"<<std::endl;
+	std::cout<<std::endl;
+
+	std::sort(arr,arr+number);
+
+	for (int i{0}; i<number; i++){
+		std::cout<<"Name "<<i<<arr[i]<<std::endl;
 	}
 
+	delete[] arr;
 	return 0;
 }
