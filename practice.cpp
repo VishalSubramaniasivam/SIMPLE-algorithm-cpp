@@ -1,29 +1,38 @@
 #include<iostream>
 #include<algorithm>
 
-int main(){
+enum class Type{
+	tInt,
+	tFloat,
+	tString
+};
 
-	int number{0};
-	std::cout<<"Enter number of names that you want to enter: ";
-	std::cin>>number;
-
-	std::string* arr{new (std::nothrow) std::string[number]{}};
-	if(arr){
-		std::cout<<"Memory dynamically allocated sucessfully!\n";
+void printValue(void* ptr, Type type){
+	switch(type){
+		case Type::tInt :
+			std::cout<<*(static_cast<int*>(ptr))<<"\n";
+			break;
+		case Type::tFloat :
+			std::cout<<*(static_cast<float*>(ptr))<<"\n";
+			break;			
+		case Type::tString :
+			std::cout<<*(static_cast<std::string*>(ptr))<<"\n";
+			break;
+		default :
+			std::cout<<"Could'nt find value to print"<<"\n";
+			break;
 	}
+}
 
-	for (int i{0}; i<number; i++){
-		std::cout<<"Enter name"<<i<<": ";
-		std::cin>>arr[i];
-	}
-	std::cout<<std::endl;
+int main()
+{
+    int nValue{ 5 };
+    float fValue{ 7.5f };
+    std::string strValue[]{ "Mollie" };
 
-	std::sort(arr,arr+number);
+    printValue(&nValue, Type::tInt);
+    printValue(&fValue, Type::tFloat);
+    printValue(&strValue, Type::tString);
 
-	for (int i{0}; i<number; i++){
-		std::cout<<"Name "<<i<<arr[i]<<std::endl;
-	}
-
-	delete[] arr;
-	return 0;
+    return 0;
 }
