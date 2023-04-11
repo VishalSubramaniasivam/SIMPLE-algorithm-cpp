@@ -5,10 +5,10 @@ int main(){
 	int* ptr {new int {10}};
 
 	if (ptr){
-		std::cout<<"Memory cated sucessfully"<<std::endl;
+		std::cout<<"Memory created sucessfully"<<std::endl;
 	}
 
-	std::cout<<" The new number is "<< *ptr;
+	std::cout<<"The new number is "<< *ptr<<std::endl;
 
 
 	delete ptr;
