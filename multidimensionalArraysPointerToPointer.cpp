@@ -9,8 +9,8 @@ int main()
     std::cin>>rows;
     std::cout<<"Enter the number of columns: ";
     std::cin>>columns;
-
-    int** arr{new (std::nothrow) int*[rows]};
+	
+    int** arr{new (std::nothrow) int*[rows]}; //std::nothrow assigns a nullptr to pointer if memory allocation was not successfull
     if(arr){
         std::cout<<rows<<" rows created\n";
     }
